@@ -1,0 +1,37 @@
+srot13 performance
+file with 1000 words, 6000 bytes:
+real    0m0.008s
+user    0m0.001s
+sys     0m0.003s
+file with 10000 words
+real    0m0.047s
+user    0m0.019s
+sys     0m0.018s
+file with 1000000 words
+real    0m8.289s
+user    0m1.618s
+sys     0m1.850s
+
+
+srot13u performance
+file with 1000 words, 6000 bytes:
+real    0m0.006s
+user    0m0.001s
+sys     0m0.003s
+comparisons: 4932
+
+file with 10000 words
+real    0m0.035s
+user    0m0.014s
+sys     0m0.019s
+comparisons: 64608
+
+file with 1000000 words
+real    0m7.976s
+user    0m1.330s
+sys     0m1.896s
+comparisons: 9884992
+
+the reltionship is 
+comparisons ~= 1.5 * words * log(words)
+

@@ -1,0 +1,21 @@
+Q1: the purpose of this line is as a goto line for the code inside the for loop
+in line 2030. Since the code is changed after the patch, the line is no longer
+necessary but it's not necessary to delete it either because it's never used
+after the patch.  Q2: since each region has its own way of displaying time, the
+patch might case confusion for some of the users Q3: Traceback (most recent call
+last): File "./randline.py", line 70, in <module> main() File "./randline.py",
+line 64, in main sys.stdout.write(generator.chooseline()) File "./randline.py",
+line 34, in chooseline return random.choice(self.lines) File
+"/usr/lib64/python2.6/random.py", line 261, in choice return
+seq[int(self.random() * len(seq))]  # raises IndexError if seq is empty
+IndexError: list index out of range
+
+the reason is that it is trying to pass a null argument to the chooseline
+methodand it will cause a problem because there is nothing inside the file.
+
+Q4: there is syntax error File "randline.py", line 65 except IOError as (errno,
+strerror): ^ SyntaxError: invalid syntax
+
+in python 3 the syntax should be except IOError as xxx_todo_changeme: (errno,
+strerror) = xxx_todo_changeme.args parser.error("I/O error({0}): {1}".
+format(errno, strerror))

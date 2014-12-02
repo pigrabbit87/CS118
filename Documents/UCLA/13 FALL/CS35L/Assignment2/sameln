@@ -1,0 +1,52 @@
+#!/bin/bash
+dir=$1
+
+ls -a $dir | grep "^\." | sort > dot.txt
+ls $dir | sort >> dot.txt
+
+ARRAY=()
+while read line
+do
+	line=$(echo $line | sed 's/[^a-zA-Z0-9.]/\\&/g') #this command add \ in front of all the special characters 
+	ARRAY=("${ARRAY[@]}" "$line")
+done < dot.txt
+ARRAY2=("${ARRAY[@]}")
+
+
+for entry in ${ARRAY2[@]}
+do
+	
+	count=$((count+1))
+	ARRAY=("${ARRAY[@]:1}")
+	
+	for entry2 in ${ARRAY[@]}
+	do
+		if [ -f "$dir/$entry" ] 
+		then
+			if [ ! -e "$dir/$entry" ]
+		        then
+                		echo error
+        		else
+
+			if [ -f "$dir/$entry2" ]
+			then
+			if [ ! -e "$dir/$entry" ]
+               		then
+                	        echo error
+                	else
+			cmp -s $entry $entry2 
+			status=$?
+				if [ "$status" -eq "0" ]
+				then
+					ln -f $entry2 $entry	
+				fi
+			fi
+			fi
+			fi
+		fi
+		
+	done
+
+done
+
+

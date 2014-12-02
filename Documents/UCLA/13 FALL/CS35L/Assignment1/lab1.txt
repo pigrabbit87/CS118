@@ -1,0 +1,9 @@
+1. man -k <specific word> 2. cp: /bin/cp wc: /usr/bin/wc 3. x:
+cudaChannelgFormatDesc w: show who is logged on and what they are doing 4. if
+the time jumps forward, the command will be run immediately after the time is
+changed. if the time jumps backward, care is taken to avoid running jobs twice.
+5. gcc 6. g-s clear the bits with symbolic modes that are preserved from the
+previous directories 7. locate 8. find -mtime 3 9. ./Desktop ./Desktop/cs 35
+./My Documents 10. 18 11. Written by Richard M. Stallman and David MacKenzie 12.
+libtinfo.so.5.7 13. who am I whatis whoamI whereis 14. delete word 15. the local
+environment

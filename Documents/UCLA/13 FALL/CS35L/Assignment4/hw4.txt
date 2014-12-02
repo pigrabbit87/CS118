@@ -1,0 +1,23 @@
+git checkout v3.0 -b quote #check out the new branch
+patch -p1 <quote-3.0-patch.txt #apply the patch
+git commit -a -m "commit" #commit the changes
+export PATH=$PATH:/usr/local/cs/bin #so there will be help2man
+./bootstrap #build the program
+./configure
+make
+make distdir #get the changeLog file
+cd diffutils-3.0.1-e70b
+vi ChangeLog #see the changes i have commited!
+git format-patch -1 --stdout > formatted-patch.txt #apply format-patch and
+save the patch into the file
+git commit -a -m "after the formatted patch"
+git checkout v3.0 -b tmp #create another branch wtih v3.0
+git am #apply patch through email
+export PATH=$PATH:/usr/local/cs/bin 
+./bootstrap #build the file
+./configure
+make
+make check #pass all test!
+git commit -a -m "does everything works"
+make distdir
+

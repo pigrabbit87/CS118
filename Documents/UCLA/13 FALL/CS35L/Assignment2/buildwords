@@ -1,0 +1,21 @@
+#! /bin/sh
+cat $1 > try1.txt
+sed 'N;s/<tr>\r\n *<td>.*<\/td>//g;P;D' try1.txt > try2.txt
+grep "<td>.*</td>" try2.txt > try1.txt
+sed 's/<td>//g' try1.txt > try2.txt #substitute patter <td> with nothing
+sed 's/<\/td>//g' try2.txt > try1.txt #subsitute pattern <\td> with nothing
+sed 's/<u>//g' try1.txt > try2.txt #subsitute pattern <u> with nothing
+sed 's/<\/u>//g' try2.txt > try1.txt #subsitute pattern <\u> with nothing
+#sed 's/<u>//g' try1.txt > try2.txt
+#sed 's/<\/u>//g' try2.txt > try1.txt
+sed s/"\`"/"'"/g try1.txt > try2.txt
+tr '[:upper:]' '[:lower:]' < try2.txt > try1.txt
+cut -c 5- < try1.txt > try2.txt
+tr -d '\r' < try2.txt > try1.txt
+tr ' ' '\n' < try1.txt > try2.txt
+tr ', ' '\n' < try2.txt > try1.txt
+sed '/^$/d' try2.txt > try1.txt
+tr -c "[\n,p,k,\',m,n,,w,l,h,a,e,i,o,u]" '0' < try1.txt > try2.txt
+sed 's/.*0.*//g' try2.txt > try1.txt
+sort -u try1.txt 
+

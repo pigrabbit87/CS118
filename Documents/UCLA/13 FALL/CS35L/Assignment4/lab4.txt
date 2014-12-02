@@ -1,0 +1,68 @@
+export PATH=$PATH:usr/local/cs/bin #get git out to work
+
+cd gitroot #already created a directory with mkdir gitroot
+
+git clone git://git.savannah.gnu.org/diffutils.git #get a clone form the web
+to the repository
+
+cd diffutils/ #enter the repository
+
+git log > git-log.txt #view the changes that were made since the beginning of
+the file
+
+git tag > git-tags.txt #view the different version that were created in the
+tags
+
+vi git-log.txt #Find the commit entitled .maint: quote 'like this' or "like
+this", not `like this'., and generate a patch for that commit, putting it into
+the file quote-patch.txt. maint: quote 'like this' #commit is 62ca21c8c1a5aa3488589dcb191a4ef04ae9ed4f
+
+git show 62ca21c8c1a5aa3488589dcb191a4ef04ae9ed4f > quote-patch.txt //compare this commit with te current version and generate a patch 
+vi git-log.txt #find the version 3 commit number, version 3.0 #commit is 022cd5c5eb647a22a4daa5fe5cbc10af6d5a1112
+
+git checkout 022cd5c5eb647a22a4daa5fe5cbc10af6d5a1112 #can also go git
+checkout v3.0
+
+patch -p1 <quote-patch.txt #patch current version with the quote-patch file press enter and skip all the error patch
+
+git status #get an overview of what the patch has changed to the diffutils
+file
+
+git checkout -- NEWS #delete the untracked files
+
+git status 
+
+git checkout -- README TODO doc/diagmeet.note ms/config.bat ms/config.site po/en.po src/diff.h src/system.h tests/help-version
+
+#go though all the files to change all the comments ' back to `
+
+vi src/*.c.rej #copy the change to diff3.c and cmp.c
+
+#use rm to remove all the files that are untracked
+
+git diff > quote-3.0-patch.txt
+
+export PATH=/usr/local/cs/bin:$PATH
+
+./bootstrap
+
+./configure
+
+make
+
+make check 
+
+diff .- #shows `.-'
+
+#put all the files from the old files before patch into one. bothe in version
+3.0 
+
+diff -pru diffutils-3.0 diffutils-3.0-patch >quote-3.0-test.txt
+#the quote-3.0-test.txt file has include all the changes that we made to the
+.c files and nothing else
+
+diff quote-3.0-test.txt quote-3.0-patch.txt #they files are not identical.
+many of the funciton arguments inside the patch files are not included in the
+test file
+
+

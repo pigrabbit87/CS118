@@ -1,0 +1,42 @@
+1. sort /usr/share/dict/words > words.txt
+2. wget http://www.cs.ucla.edu/classes/fall13/cs35L/assign/assign2.html
+3. cp assign2.html assign.txt
+4. tr -c 'A-Za-z' '[\n*]' < assign.txt #relace all the non characters with newline
+5. tr -cs 'A-Za-z' '[\n*]' < assign.txt #do the same thing except when encounter multile non characters, it doesn't replace every single one with newline. it does if only once
+6. tr -cs 'A-Za-z' '[\n*]' < assign.txt | sort #sort the result of number 4 in alphabetical order
+7. tr -cs 'A-Za-z' '[\n*]' < assign.txt | sort -u #sort the result of the first command and only output the first of an equal run
+8. tr -cs 'A-Za-z' '[\n*]' < assign.txt | sort -u | comm - words.txt #this command compare the two file - assign.txt after sorting and words.txt. the first column desplays the lines unique in assign.txt; the second columns is the unique words in words.txt; third column displays the lines that are common in both files.
+9. tr -cs 'A-Za-z' '[\n*]' < assign.txt | sort -u | comm -23 - words.txt #print only lines that are unique in assign.txt
+
+
+
+shell command
+In this lab I decided to use two files that serve as both source and results for the command. I'll name tham try1.txt and try2.txt
+
+cat $1 > try1.txt #redirect the output of the file to try1.txed 's/<\/td>//g'sed 's/<\/td>//g'sed 's/<\/td>//g'
+sed 'N;s/<tr>\r\n *<td>.*<\/td>//g;P;D' try1.txt > try2.txt #delete all the english words in the file using sed command. add a new line to the work buffer -> substitude the pattern with nothing -> paste the previous line -> delete this line
+grep "<td>.*</td>" try2.txt > try1.txt # get the hawaiian words, which are the words inside the pattern
+sed 's/<td>//g' try1.txt > try2.txt #substitute patter <td> with nothing
+sed 's/<\/td>//g' try2.txt > try1.txt #subsitute pattern <\td> with nothing 
+sed 's/<u>//g' try1.txt > try2.txt #subsitute pattern <u> with nothing
+sed 's/<\/u>//g' try2.txt > try1.txt #subsitute pattern <\u> with nothing
+sed s/"\`"/"'"/g try1.txt > try2.txt #subsittute accent grave with '
+tr '[:upper:]' '[:lower:]' < try2.txt > try1.txt #change upper case to lower case
+cut -c 5- < try1.txt > try2.txt #take out the space in the front of each line
+tr -d '\r' < try2.txt > try1.txt #take out the \r character
+tr ' ' '\n' < try1.txt > try2.txt #replace space with newline
+tr ', ' '\n' < try2.txt > try1.txt #replace comma with newline
+sed '/^$/d' try2.txt > try1.txt #delete the blank line
+tr -c "[\n,p,k,\',m,n,,w,l,h,a,e,i,o,u]" '0' < try1.txt > try2.txt #check for anywords that has character that is not hawaiian and replace it with a number
+sed '/.*0.*/d' try2.txt > try1.txt #delete the word that has the pattern
+sort -u try1.txt > try2.txt #sort the results in alphabetical order and delete the duplicated results
+cpy try2.txt > hwords.txt #put the results in hwords file
+
+tr -cs 'A-Za-z' '[\n*]' < assign.txt | sort -u | tr '[:upper:]' '[:lower:]' | comm -23 - words.txt
+there are some words in the webpage like 'all' 'ul' appear here because they only appear in the webpage but not the builtin dictionary. There are 81 'misspelled' words 
+tr -cs 'A-Za-z' '[\n*]' < assign.txt | sort -u | tr '[:upper:]' '[:lower:]' | comm -12 - hwords.txt
+none of the words in the assignment page is spelled correctly in hwords
+
+
+
+ 

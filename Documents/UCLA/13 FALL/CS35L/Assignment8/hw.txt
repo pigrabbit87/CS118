@@ -1,0 +1,28 @@
+1. VU#912420 (2013-04-30) IBM Notes runs arbitrary JAVA and Javascript in emails
+Everyone has at least one email account these days. if the attacker is able to
+send an email with the malicious code and have the client load Java applets
+without realizing, , the impact will be devastating. 
+
+2. VU#945216 (2001-10-24) SSH CRC32 attack detection code contains remote
+integer overflow SSH is widely used for encrypted remote access control all over
+the world, things like file transferring. If an attacker is able to take
+advantage of the "secured" server and exploit the application or web server, the
+remotely accessed site will be corrupted.
+
+3. VU#237655 (2013-05-06) Microsoft Internet Explorer 8 CGenericElement object
+use-after-free vulnerability I ranked this lower than the previous two because
+there are other version of IE and the probability of accessing the malicious
+website is not as high as the other two. However, it is still on the scope of
+the internet, meaning that once there's damage it will impact more than the
+local site. 
+
+4. VU#127108 (2013-05-14) Serva32 2.1.0 TFTPD service buffer overflow
+vulnerability The impact of this vulnerability only occurs on the users of the
+application only. It is not as widely used as the previous three. Even though
+there is no solution available right now, the users can try to lower the attack
+by restricting access to only trusting host. 
+
+5. VU#774103 (2013-05-17) Linux kernel perf_swevent_enabled array out-of-bound
+access privilege escalation vulnerability This vulnerability makes it possible
+for the unprivileged users to have higher privileged. However, this happens
+locally. The damage depends on how much access the unprivileged users can get. 

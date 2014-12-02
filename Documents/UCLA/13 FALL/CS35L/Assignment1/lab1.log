@@ -1,0 +1,32 @@
+1. man man
+   check usage
+2. whereis cp
+   whereis wc
+3. cd usr/bin
+   ls 
+   check one character executable
+4. man cron
+   /Daylight saving 
+5. cd /usr/bin
+   ls -l cc
+6. man chmod
+   /g-s
+7. man find
+   check SEE ALSO
+   man locate
+8. man find
+   /modified 
+9. find -type d -mtime 3
+10. cd /bin
+    find -type l
+11. man ls
+    /author
+12. cd /lib
+    ls -gt
+    search for the oldest file
+13. cd /bin
+    ls
+    check usage
+14. look up in the slides
+15. man locale
+    check description

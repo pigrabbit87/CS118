@@ -1,0 +1,47 @@
+# catb.c
+the code basically takes in the character and output it in the loop. if the input is the end of the line, EOF, then the program exits.
+
+$ gcc catb.c -o libf
+$ ./libf <testfile
+
+#catu.c
+remember to put the overhead for unix system call <unistd.h>
+the code read from the standard input (0) and store the value inside character
+array data[]. After reading each input, write the value to the standard ouput 
+(1). continue until the return read value is 0, meaning there is no byte read in.
+
+$ gcc catu.c -o sys
+$./sys <testfile
+
+#btw the testfile is created by 
+$ dd if=/dev/zero of testfile bs=5000000 count=1
+#to make sure there are at least 5,000,000 bytes in the file
+$ wc -c testfile
+5000000 testfile
+
+#do strace to see how many system call it did
+a) copying one file to another
+strace -o strace_output ./libf < testfile > copy
+strace -o strace_output2 ./sys < testfile > copy_2
+//sys runs noticeably slower than library function
+
+b) copyint one file to the terminal
+strace -o strace_output ./libf < testfile
+strace -o strace_output2 ./sys < testfile
+
+//in both scenerio, the strace_output2 file is a lot bigger than the strace_output file. there are also a lot of read() and write() function inside
+
+#compare the time each program runs using 
+time [options] command [arguments..]
+library: //output to terminal
+$ time ./libf < testfile 
+real    0m0.947s
+user    0m0.235s
+sys     0m0.030s
+
+$ time ./sys < testfile
+real    0m7.308s
+user    0m0.248s
+sys     0m6.266s
+
+the system call is significantly slower than the function call

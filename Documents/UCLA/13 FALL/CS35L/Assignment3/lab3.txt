@@ -1,0 +1,31 @@
+wget ftp://ftp.gnu.org/gnu/coreutils/coreutils-7.6.tar.gz
+#download the file
+tar -xzvf coreutils-7.6.tar.gz
+#unzip the file 
+mkdir ~/coreutilsInstall 
+cd coreutils-7.6
+./configure --prefix'='"/u/eng/ugrad/yehh/coreutilsInstall"
+#configure the file with prefix '=' so the the make Install command will work
+make 
+make install
+cd ..
+cd coreutilsInstall/bin
+export LC_ALL='en_US.UTF-8'
+./ls -l
+#the results show that the format is the old one %Y-%m-%d %H:%M
+
+//patching
+cd ~
+cd coreutils-7.6
+vi patch_file
+#paste the modification file after --- a/src/ls.c
+save the file
+patch -p1 <patch_file 
+#take out a/ since we can directly go in src/
+make
+make install
+ALL DONE :D
+
+check your work by going to the  ~/coreutilsInstall/bin 
+./ls -l 
+#the results show that the format is changed to MM DD
